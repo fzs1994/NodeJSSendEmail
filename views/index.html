@@ -31,11 +31,26 @@
             transition: 0.2s all linear;
         }
 
+        .btn-red{
+            background-color: #e74c3c;
+            color: #fff;
+            border-radius: 0;
+            border: 0;
+            padding: 10px 30px;
+            transition: 0.2s all linear;
+        }
+
+        .btn-red:hover{
+            background-color: #a63b3b;
+            color: #eee;
+            transition: 0.2s all linear;
+        }        
+
         .card{
             box-shadow: 5px 5px 25px #aaa;
             border-radius: 3px;
             position:fixed;
-            top: 50%;
+            top: 37%;
             left: 50%;
             width:40em;
             margin-top: -13em; /*set to a negative number 1/2 of your height*/
@@ -67,44 +82,171 @@
             border-bottom-left-radius: 3px;
             border-bottom-right-radius: 3px;
         }
+
+
+        input:-webkit-autofill {
+          -webkit-box-shadow: 0 0 0px 1000px white inset;
+        }
+
+        form:invalid .material-button {
+          color: rgba(0, 0, 0, 0.26);
+          pointer-events: none;
+        }
+
+        .material-button {
+          padding: 8px 10px;
+          min-width: 88px;
+          border-radius: 3px;
+          font-size: 14px;
+          font-weight: 500;
+          color: #824ba7;
+          text-align: center;
+          text-transform: uppercase;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          background-color: transparent;
+          transition: background-color .2s, color .2s;
+        }
+        .material-button:hover, .material-button:focus {
+          background-color: rgba(158, 158, 158, 0.2);
+        }
+
+        .material-input {
+          height: 70px;
+        }
+        .material-input label {
+          line-height: 62px;
+          height: 46px;
+        }
+
+        .material-textarea {
+          height: 152px;
+        }
+        .material-textarea label {
+          line-height: 62px;
+          height: 130px;
+        }
+        .material-textarea textarea:invalid ~ #counter {
+          color: red;
+        }
+        .material-textarea textarea:invalid ~ #counter:after {
+          color: red;
+        }
+        .material-textarea textarea:placeholder-shown:invalid ~ #counter {
+          color: black;
+        }
+        .material-textarea textarea:placeholder-shown:invalid ~ #counter:after {
+          color: black;
+        }
+        .material-textarea textarea ~ #counter {
+          position: absolute;
+          bottom: 3px;
+          right: 0;
+          color: black;
+          font-size: 12px;
+        }
+        .material-textarea textarea ~ #counter:after {
+          content: ' / 500';
+          color: black;
+        }
+
+        .material-input, .material-textarea {
+          position: relative;
+          /*width: 300px;*/
+          margin-bottom: 6px;
+          overflow: hidden;
+          font-family: arial, sans-serif;
+        }
+        .material-input label, .material-input input, .material-input textarea, .material-input .error, .material-textarea label, .material-textarea input, .material-textarea textarea, .material-textarea .error {
+          position: absolute;
+          left: 0;
+          width: 100%;
+          font-size: 16px;
+        }
+        .material-input textarea, .material-textarea textarea {
+          height: 100px;
+          resize: none;
+        }
+        .material-input input, .material-input textarea, .material-textarea input, .material-textarea textarea {
+          top: 12px;
+          border: none;
+          margin: 8px 0;
+          background: none;
+          z-index: 2;
+        }
+        .material-input input:focus, .material-input textarea:focus, .material-textarea input:focus, .material-textarea textarea:focus {
+          outline: none;
+        }
+        .material-input input:focus + label, .material-input input:valid + label, .material-input input:not(:placeholder-shown) + label, .material-input textarea:focus + label, .material-input textarea:valid + label, .material-input textarea:not(:placeholder-shown) + label, .material-textarea input:focus + label, .material-textarea input:valid + label, .material-textarea input:not(:placeholder-shown) + label, .material-textarea textarea:focus + label, .material-textarea textarea:valid + label, .material-textarea textarea:not(:placeholder-shown) + label {
+          line-height: 18px;
+          font-size: 12px;
+        }
+        .material-input input:placeholder-shown ~ .error, .material-input input:valid ~ .error, .material-input textarea:placeholder-shown ~ .error, .material-input textarea:valid ~ .error, .material-textarea input:placeholder-shown ~ .error, .material-textarea input:valid ~ .error, .material-textarea textarea:placeholder-shown ~ .error, .material-textarea textarea:valid ~ .error {
+          opacity: 0;
+        }
+        .material-input input:focus + label, .material-input textarea:focus + label, .material-textarea input:focus + label, .material-textarea textarea:focus + label {
+          color: #824ba7;
+        }
+        .material-input input:focus + label:after, .material-input textarea:focus + label:after, .material-textarea input:focus + label:after, .material-textarea textarea:focus + label:after {
+          visibility: visible;
+          left: 0;
+          width: 100%;
+        }
+        .material-input input:focus + label + .error, .material-input textarea:focus + label + .error, .material-textarea input:focus + label + .error, .material-textarea textarea:focus + label + .error {
+          opacity: 0;
+        }
+        .material-input input:not(:focus):not(:placeholder-shown):invalid, .material-input textarea:not(:focus):not(:placeholder-shown):invalid, .material-textarea input:not(:focus):not(:placeholder-shown):invalid, .material-textarea textarea:not(:focus):not(:placeholder-shown):invalid {
+          transition-delay: 0s;
+          color: red;
+        }
+        .material-input input:not(:focus):not(:placeholder-shown):invalid + label, .material-input textarea:not(:focus):not(:placeholder-shown):invalid + label, .material-textarea input:not(:focus):not(:placeholder-shown):invalid + label, .material-textarea textarea:not(:focus):not(:placeholder-shown):invalid + label {
+          transition: all .2s 0s;
+          color: red;
+        }
+        .material-input input:not(:focus):not(:placeholder-shown):invalid + label:after, .material-input textarea:not(:focus):not(:placeholder-shown):invalid + label:after, .material-textarea input:not(:focus):not(:placeholder-shown):invalid + label:after, .material-textarea textarea:not(:focus):not(:placeholder-shown):invalid + label:after {
+          visibility: visible;
+          left: 0;
+          width: 100%;
+          background: red;
+          transition-delay: 0s;
+        }
+        .material-input label, .material-textarea label {
+          color: #666;
+          font-weight: 300;
+          font-size: 14px;
+          transition: 0.2s all cubic-bezier(0.4, 0, 0.2, 1);
+          box-shadow: inset 0px -1px #aaa;
+          z-index: 1;
+        }
+        .material-input label:after, .material-textarea label:after {
+          content: '';
+          visibility: hidden;
+          position: absolute;
+          left: calc(50% - 5px);
+          bottom: 0;
+          background-color: #824ba7;
+          width: 10px;
+          height: 2px;
+          transition-duration: 0.2s;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          z-index: 10;
+        }
+        .material-input .error, .material-textarea .error {
+          position: absolute;
+          bottom: 3px;
+          color: red;
+          font-size: 12px;
+          font-style: italic;
+          opacity: 1;
+          transition: all .2s;
+        }
+
+
     </style>
 </head>
 
 <body>
-    <!-- <div class="panel panel-primary" style="width:50%;margin:0 auto; margin-top:10%">
-        <div class="panel-heading">
-            <h3>Email Form In Node.Js</h3></div>
-        <div class="panel-body" style="height:40%; text-align:center;">
-            <p class="bg-info" id="msg"></p>
-            <form class="form-horizontal" role="form" id="emailForm" method="post">
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="email">Email:</label>
-                    <div class="col-sm-10">
-                        <input type="email" class="form-control" name="email" placeholder="Enter email" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="subject">Subject:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" name="subject" placeholder="Enter subject" required="required">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2" for="description">Description:</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="description" placeholder="Enter Description"></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button id="send" class="btn btn-primary btn-lg" type="button">
-                            <span class="glyphicon glyphicon-send"></span> Send
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div> -->
 
     <div class="container">
         <div class="row">
@@ -120,23 +262,65 @@
                           <p id="msg"></p>
                         </div>
                         <form class="form-horizontal" role="form" id="emailForm" method="post">
-                            <div class="form-group">
-                                <label class="control-label col-sm-2" for="email">Email:</label>
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" name="email" placeholder="Enter email" required="required">
+                            <form>
+                              <div class="material-input">
+                                <input autofocus="true" id="name" minlength="2" placeholder=" " required="true" type="text" name="name" /><label for="name">Receiver name</label><span class="error">Input at least 2 letters</span>
+                              </div>
+                              <div class="material-input">
+                                <input id="email" placeholder=" " required="true" type="email" name="email" /><label for="email">Receiver email address</label><span class="error">Enter email format (jon@snow.com)</span>
+                              </div>
+                              <div class="material-input">
+                                <input autofocus="true" id="name" minlength="2" placeholder=" " name="subject" required="true" type="text" name="" /><label for="name">Subject</label><span class="error">Input at least 2 letters</span>
+                              </div>
+                              <div class="material-textarea">
+                                <textarea id="body" name="description" maxlength="500" minlength="10" onkeyup="document.getElementById(&#39;counter&#39;).innerHTML = this.value.length;" placeholder=" " required="true"></textarea><label for="body">Your message</label><span class="error">Body have to contain at least 10 characters</span><span id="counter">0</span>
+                              </div>
+                              <!-- <button class="material-button" type="submit">Send info</button> -->
+                              
+                                <button id="send" type="submit" class="btn btn-default btn-teal">
+                                    SEND
+                                </button>
+
+                                <button id="reset" type="reset" class="btn btn-default btn-red">
+                                    RESET
+                                </button>
+                              
+                                <br><br>
+                            </form>
+                            <!-- <div class="form-group">
+                                <div class="col-sm-12">
+                                    <fieldset class="material">
+                                        <input type="email" placeholder="jon@snow.com" name="email" required>
+                                        <hr>
+                                        <label>First Name</label>
+                                    </fieldset>
                                 </div>
                             </div>
                             <div class="form-group">
+                                <div class="col-sm-12">
+                                    <fieldset class="material">
+                                        <input type="text" placeholder="Enter Subject" name="subject" required>
+                                        <hr>
+                                        <label>Subject</label>
+                                    </fieldset>
+                                </div>
                                 <label class="control-label col-sm-2" for="subject">Subject:</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" name="subject" placeholder="Enter subject" required="required">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2" for="description">Description:</label>
+                                <div class="col-sm-12">
+                                    <fieldset class="material">
+                                        <input type="text" placeholder="Enter Description" name="description" required>
+                                        <hr>
+                                        <label>Description</label>
+                                    </fieldset>
+                                </div>
+                                <!-- <label class="control-label col-sm-2" for="description">Description:</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control" name="description" placeholder="Enter Description"></textarea>
-                                </div>
+                                </div> --
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
@@ -144,7 +328,7 @@
                                         SEND
                                     </button>
                                 </div>
-                            </div>
+                            </div> -->
                         </form>
                     </div>
                 </div>
@@ -167,6 +351,7 @@
                     data: formData,
                     success: function(result) {
                         $("#msg").empty().text(result);
+                        $("#reset").trigger('click');
                     },
                     error: function(e) {
                         $("#msg").empty().text("There is some error to send email, Error code:" + e.status + ", Error message:" + e.statusText);

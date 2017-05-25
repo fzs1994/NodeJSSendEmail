@@ -22,11 +22,11 @@ app.post('/send', function(req, res) {
     }
     // Sending Email Without SMTP
     nodemailer.mail({
-        from: "Node Emailer ✔ <fsaiyed@officebrain.com>", // sender address
+        from: "Node Emailer <fsaiyed@officebrain.com>", // sender address
         to: req.body.email, // list of receivers
         subject: req.body.subject + " ✔", // Subject line
         //text: "Hello world ✔", // plaintext body
-        html: "<b>" + req.body.description + "</b>" // html body
+        html: "<strong> Name:</strong>"+req.body.name+"<br><p><strong>Message:</strong>" + req.body.description + "</p>" // html body
     });
     res.send("Email has been sent successfully");
 
