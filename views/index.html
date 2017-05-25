@@ -1,69 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Send email in nodejs</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Send email in nodejs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <style type="text/css">
+        body, html{
+            background-color: #eee;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .btn-teal{
+            background-color: #008080;
+            color: #fff;
+            border-radius: 0;
+            border: 0;
+            padding: 10px 30px;
+            transition: 0.2s all linear;
+        }
+
+        .btn-teal:hover{
+            background-color: #007070;
+            color: #eee;
+            transition: 0.2s all linear;
+        }
+
+        .card{
+            box-shadow: 5px 5px 25px #aaa;
+            border-radius: 3px;
+            position:fixed;
+            top: 50%;
+            left: 50%;
+            width:40em;
+            margin-top: -13em; /*set to a negative number 1/2 of your height*/
+            margin-left: -20em; /*set to a negative number 1/2 of your width*/
+        }
+
+        @media(max-width: 480px){
+            .card{
+                width: 98%;
+                position: relative;
+                top: 0; 
+                left: 0; 
+                margin-top: 2em; 
+                margin-left: 0; 
+            }
+        }
+
+        .card-header{
+            text-align: center;
+            background-color: #008080;
+            color: #fff;
+            padding: 15px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+        }
+        .card-content{
+            padding: 25px;
+            background-color: #fff;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+    </style>
 </head>
+
 <body>
-<div class="panel panel-primary" style="width:50%;margin:0 auto; margin-top:10%">
-<div class="panel-heading"><h3>Email Form In Node.Js</h3></div>
-<div class="panel-body" style="height:40%; text-align:center;" >
-<p class="bg-info" id="msg"></p>
- <form class="form-horizontal" role="form" id="emailForm" method="post">
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="email">Email:</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" name="email" placeholder="Enter email" required="required">
+    <!-- <div class="panel panel-primary" style="width:50%;margin:0 auto; margin-top:10%">
+        <div class="panel-heading">
+            <h3>Email Form In Node.Js</h3></div>
+        <div class="panel-body" style="height:40%; text-align:center;">
+            <p class="bg-info" id="msg"></p>
+            <form class="form-horizontal" role="form" id="emailForm" method="post">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" name="email" placeholder="Enter email" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="subject">Subject:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="subject" placeholder="Enter subject" required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="description">Description:</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="description" placeholder="Enter Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id="send" class="btn btn-primary btn-lg" type="button">
+                            <span class="glyphicon glyphicon-send"></span> Send
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Email in NodeJS using NodeMailer</h3>
+                    </div>
+                    <div class="card-content">
+                        <!-- <p class="bg-info" id="msg"></p> -->
+                        <div class="alert alert-info alert-dismissable msgAlert" style="display: none;">
+                          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                          <p id="msg"></p>
+                        </div>
+                        <form class="form-horizontal" role="form" id="emailForm" method="post">
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="email">Email:</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" name="email" placeholder="Enter email" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="subject">Subject:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="subject" placeholder="Enter subject" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="description">Description:</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" name="description" placeholder="Enter Description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button id="send" class="btn btn-default btn-teal" type="button">
+                                        SEND
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="subject">Subject:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="subject" placeholder="Enter subject" required="required">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="description">Description:</label>
-    <div class="col-sm-10">
-      <textarea class="form-control" name="description" placeholder="Enter Description"></textarea>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button id="send" class="btn btn-primary btn-lg" type="button">
-         <span class="glyphicon glyphicon-send" ></span> Send
-      </button>
-    </div>
-  </div>
-</form>
-</div>
-</div>
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script>
-$(function(){
-  var fullUrl =  location.protocol+'//'+location.hostname+(location.port ? ':'+location.port: '');
-    $("#send").click(function(){      
-      var formData = $("#emailForm").serialize();
-      $("#msg").text("Email sending Please wait..");
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            var fullUrl = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+            $("#send").click(function() {
+                var formData = $("#emailForm").serialize();
+                $(".msgAlert").css('display', 'block');
+                $("#msg").text("Email sending Please wait..");
                 $.ajax({
-                url: fullUrl+'/send',
-                type: 'POST',
-                data: formData,
-                success: function(result) {
-                                 $("#msg").empty().text(result);
-                         },
-                error: function(e) {
-                                 $("#msg").empty().text("There is some error to send email, Error code:"+e.status +", Error message:"+e.statusText);
-                       },
-                dataType: "html",
-                timeout: 60000
+                    url: fullUrl + '/send',
+                    type: 'POST',
+                    data: formData,
+                    success: function(result) {
+                        $("#msg").empty().text(result);
+                    },
+                    error: function(e) {
+                        $("#msg").empty().text("There is some error to send email, Error code:" + e.status + ", Error message:" + e.statusText);
+                    },
+                    dataType: "html",
+                    timeout: 60000
+                });
             });
-    });
-});
-</script>
+        });
+    </script>
 </body>
+
 </html>
