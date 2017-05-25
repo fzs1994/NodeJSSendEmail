@@ -39,7 +39,7 @@ app.post('/send', function(req, res) {
         port: 465, // port for secure SMTP
         auth: {
             user: "fzssyd@gmail.com",
-            pass: "Corollary19.6"
+            pass: "C********19.6"
         }
     });
     var mailOptions = {
