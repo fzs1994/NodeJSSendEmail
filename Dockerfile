@@ -11,8 +11,7 @@ RUN npm install
 
 # Bundule app source
 COPY server.js /usr/src/app
-
-EXPOSE 3000
+COPY index.html /usr/src/app
 
 CMD [ "node", "server.js" ]
 
